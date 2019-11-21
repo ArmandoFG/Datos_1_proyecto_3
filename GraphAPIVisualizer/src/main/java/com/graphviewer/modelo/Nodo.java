@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.graphviewer.dao;
+package com.graphviewer.modelo;
 
 import java.util.Vector;
 
@@ -11,28 +11,27 @@ import java.util.Vector;
  *
  * @author Harold
  */
-public class NodoDAO {
+public class Nodo {
     public int NodoID;
     public int Telefono;
-    public static int idCount;  
-    public Vector<AristasDAO> Aristas;
+    //public static int idCount;  
+    public Vector<Aristas> Aristas;
+    public String nombre;
     
     
-    public NodoDAO(int telefono,NodoDAO apuntado, int peso){
+    public Nodo(int telefono,String nombre,int Nodeid/*,Vector<Aristas> aristas*/){
     
-    this.NodoID = idCount;
-    this.Telefono = telefono;
-    AristasDAO NArista = new AristasDAO(peso, apuntado);
-    this.Aristas.add(NArista);
-    idCount ++;
+        this.nombre = nombre;
+        this.NodoID = Nodeid;
+        this.Telefono = telefono;
+        this.Aristas = null;
     
     }
     
     public int getID(){//obtiene nombre del doc
         return this.NodoID;
     }
-    public void setArista(NodoDAO apuntado, int peso){//pone el nombre del doc
-        AristasDAO NArista = new AristasDAO(peso, apuntado);
+    public void addArista(Aristas NArista){//pone el nombre del doc  
         this.Aristas.add(NArista);
     }
     

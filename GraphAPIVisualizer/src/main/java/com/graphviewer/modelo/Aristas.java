@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.graphviewer.dao;
+package com.graphviewer.modelo;
 
 /**
  *
  * @author Harold
  */
-public class AristasDAO {
-    public NodoDAO NConect;
+public class Aristas {
+    public Nodo NConect;
     public int Peso;
     
-    public AristasDAO(int peso, NodoDAO apuntado){
-    this.NConect = apuntado;
+    public Aristas(int peso){
+    this.NConect = null;
     this.Peso = peso;
     }
     
@@ -25,7 +25,11 @@ public class AristasDAO {
         this.Peso = peso;
     }
     
-    public NodoDAO getConect() { //devuelve el nodo siguiente
+    public void setNodo(Nodo nodo){//pone el nombre del doc
+        this.NConect = nodo;
+    }
+    
+    public Nodo getConect() { //devuelve el nodo siguiente
         return this.NConect; 
     }
 

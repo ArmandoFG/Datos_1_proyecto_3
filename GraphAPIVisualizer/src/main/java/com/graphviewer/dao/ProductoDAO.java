@@ -5,7 +5,7 @@
  */
 package com.graphviewer.dao;
 
-import com.graphviewer.modelo.Producto;
+import com.graphviewer.modelo.Nodo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,21 +14,23 @@ import java.util.List;
  * @author Harold
  */
 public class ProductoDAO {
-    public static List<Producto> getProductos()
+    public static List<Nodo> getProductos()
     {
-        List<Producto> lista = new ArrayList();
-        Producto producto1 = new Producto(1,"Case",500);
-        Producto producto2 = new Producto(2,"SSD",420);
-        Producto producto3 = new Producto(3,"HD",480);
-        Producto producto4 = new Producto(4,"MD",123);
-        Producto producto5 = new Producto(5,"RAM",420);
+        List<Nodo> lista = new ArrayList();
+        Nodo nodo1 = new Nodo(88323787, "ANA",001);
+        Nodo nodo2 = new Nodo(63139863, "HAROLD",203);
+        Nodo nodo3 = new Nodo(63632009, "JORGE",404);
+        Nodo nodo4 = new Nodo(87145393, "JOSE",800);
+        Nodo nodo5 = new Nodo(22545566, "XD",200);
         
-        lista.add(producto1);
-        lista.add(producto2);
-        lista.add(producto3);
-        lista.add(producto4);
-        lista.add(producto5);
-        
+        lista.add(nodo1);
+        lista.add(nodo2);
+        lista.add(nodo3);
+        lista.add(nodo4);
+        lista.add(nodo5);
+        for(Nodo nodo :lista){
+            System.out.println(nodo.Telefono +" "+ nodo.nombre );
+        }
         return lista;
     }
 }
