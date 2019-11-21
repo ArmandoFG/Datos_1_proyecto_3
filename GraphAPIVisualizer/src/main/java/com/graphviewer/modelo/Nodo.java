@@ -13,18 +13,19 @@ import java.util.Vector;
  */
 public class Nodo {
     public int NodoID;
-    public int Telefono;
-    //public static int idCount;  
+    public int Telefono;  
     public Vector<Aristas> Aristas;
-    public String nombre;
+    public int inDegree;
+    public int outDegree;
     
     
-    public Nodo(int telefono,String nombre,int Nodeid/*,Vector<Aristas> aristas*/){
-    
-        this.nombre = nombre;
+    public Nodo(int telefono,int Nodeid){
+   
         this.NodoID = Nodeid;
         this.Telefono = telefono;
         this.Aristas = null;
+        this.inDegree = 0;
+        this.outDegree = 0;
     
     }
     
@@ -33,6 +34,30 @@ public class Nodo {
     }
     public void addArista(Aristas NArista){//pone el nombre del doc  
         this.Aristas.add(NArista);
+    }
+
+    public Vector<Aristas> getAristas() {
+        return Aristas;
+    }
+
+    public void setAristas(Vector<Aristas> Aristas) {
+        this.Aristas = Aristas;
+    }
+
+    public int getInDegree() {
+        return inDegree;
+    }
+
+    public void setInDegree(int inDegree) {
+        this.inDegree = inDegree;
+    }
+
+    public int getOutDegree() {
+        return outDegree;
+    }
+
+    public void setOutDegree(int outDegree) {
+        this.outDegree = outDegree;
     }
     
     public int getTelefono() { //devuelve el nodo siguiente

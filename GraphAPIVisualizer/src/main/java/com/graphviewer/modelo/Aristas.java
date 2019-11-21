@@ -10,27 +10,46 @@ package com.graphviewer.modelo;
  * @author Harold
  */
 public class Aristas {
-    public Nodo NConect;
+    public Nodo Start;
+    public Nodo End;
     public int Peso;
+    public int Id;
     
-    public Aristas(int peso){
-    this.NConect = null;
+    public Aristas(int peso, int id){
+    this.Start = null;
+    this.End = null;
     this.Peso = peso;
+    this.Id = id;
+    }
+
+    public Nodo getStart() {
+        return Start;
+    }
+
+    public void setStart(Nodo Start) {
+        this.Start = Start;
+    }
+
+    public Nodo getEnd() {
+        return End;
+    }
+
+    public void setEnd(Nodo End) {
+        this.End = End;
+    }
+
+    public int getPeso() {
+        return Peso;
+    }
+
+    public void setPeso(int Peso) {
+        this.Peso = Peso;
+    }
+
+    public int getId() {
+        return Id;
     }
     
-    public Object getPeso(){//obtiene nombre del doc
-        return this.Peso;
-    }
-    public void setPeso(int peso){//pone el nombre del doc
-        this.Peso = peso;
-    }
     
-    public void setNodo(Nodo nodo){//pone el nombre del doc
-        this.NConect = nodo;
-    }
-    
-    public Nodo getConect() { //devuelve el nodo siguiente
-        return this.NConect; 
-    }
 
 }
