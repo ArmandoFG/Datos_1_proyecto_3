@@ -5,31 +5,27 @@
  */
 package com.graphviewer.servicios;
 
+import com.graphviewer.dao.NodoDAO;
 import com.graphviewer.modelo.Nodo;
-import com.graphviewer.dao.ProductoDAO;
 import java.util.List;
-import javax.ws.rs.Path;
 import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
- 
 
 /**
  *
  * @author Harold
  */
-@Path("pruebalol")
-public class ProductoServicio {
+@Path("Nodos")
 
-
-   
-    private static List<Nodo> lista = ProductoDAO.getProductos();
+public class NodoServicio {
+    private static List<Nodo> NodeList = NodoDAO.getProductos();
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProductos() {
-       return Response.ok(lista).build();
+       return Response.ok(NodeList).build();
     }
-    
 }

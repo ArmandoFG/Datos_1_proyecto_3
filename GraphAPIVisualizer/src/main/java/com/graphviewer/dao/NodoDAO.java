@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Harold
  */
-public class ProductoDAO {
+public class NodoDAO {
     public static List<Nodo> getProductos()
     {
         List<Nodo> lista = new ArrayList();
@@ -31,3 +31,5 @@ public class ProductoDAO {
         return lista;
     }
 }
+ 
+
