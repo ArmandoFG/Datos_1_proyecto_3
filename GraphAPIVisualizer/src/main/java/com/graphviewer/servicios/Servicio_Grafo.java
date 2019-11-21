@@ -5,10 +5,8 @@
  */
 package com.graphviewer.servicios;
 
-
-import com.graphviewer.dao.NodoDAO;
-
-import com.graphviewer.modelo.Nodo;
+import com.graphviewer.dao.GrafoDAO;
+import com.graphviewer.modelo.Grafo;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -18,22 +16,16 @@ import javax.ws.rs.core.Response;
 
 /**
  *
- * @author Harold
+ * @author arman
  */
 
-@Path("Nodos")
-
-public class NodoServicio {
+@Path("Grafos")
+public class Servicio_Grafo {
     
-    private static List<Nodo> NodeList = NodoDAO.getProductos();
-    
+    private static List<Grafo> Grafolist = GrafoDAO.getProductos();
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getProductos() {
-       return Response.ok(NodeList).build();
+    public Response getProductos(){
+        return Response.ok(Grafolist).build();
     }
 }
-    
-    
-    
-

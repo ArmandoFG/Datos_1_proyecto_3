@@ -1,4 +1,1 @@
-com\graphviewer\servicios\ProductoServicio.class
 com\graphviewer\servicios\Configuracion.class
-com\graphviewer\dao\ProductoDAO.class
-com\graphviewer\modelo\Producto.class
