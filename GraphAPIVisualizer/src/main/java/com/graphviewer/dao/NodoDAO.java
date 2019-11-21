@@ -21,7 +21,7 @@ public class NodoDAO {
         Nodo nodo2 = new Nodo(63139863,203);
         Nodo nodo3 = new Nodo(63632009,404);
         Nodo nodo4 = new Nodo(87145393,800);
-        Nodo nodo5 = new Nodo(22545566,200);
+        Nodo nodo5 = new Nodo(40001155,200);
         
         lista.add(nodo1);
         lista.add(nodo2);
