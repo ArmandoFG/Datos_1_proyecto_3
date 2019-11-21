@@ -17,20 +17,17 @@ public class ProductoDAO {
     public static List<Nodo> getProductos()
     {
         List<Nodo> lista = new ArrayList();
-        Nodo nodo1 = new Nodo(88323787, "ANA",001);
-        Nodo nodo2 = new Nodo(63139863, "HAROLD",203);
-        Nodo nodo3 = new Nodo(63632009, "JORGE",404);
-        Nodo nodo4 = new Nodo(87145393, "JOSE",800);
-        Nodo nodo5 = new Nodo(22545566, "XD",200);
+        Nodo nodo1 = new Nodo(88323787,001);
+        Nodo nodo2 = new Nodo(63139863,203);
+        Nodo nodo3 = new Nodo(63632009,404);
+        Nodo nodo4 = new Nodo(87145393,800);
+        Nodo nodo5 = new Nodo(22545566,200);
         
         lista.add(nodo1);
         lista.add(nodo2);
         lista.add(nodo3);
         lista.add(nodo4);
         lista.add(nodo5);
-        for(Nodo nodo :lista){
-            System.out.println(nodo.Telefono +" "+ nodo.nombre );
-        }
         return lista;
     }
 }
