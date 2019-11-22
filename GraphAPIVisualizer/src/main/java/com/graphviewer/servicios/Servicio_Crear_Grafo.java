@@ -5,9 +5,7 @@
  */
 package com.graphviewer.servicios;
 
-import com.graphviewer.dao.GrafoDAO;
-import com.graphviewer.modelo.Grafo;
-import java.util.List;
+import com.graphviewer.dao.Crear_grafo;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,14 +16,15 @@ import javax.ws.rs.core.Response;
  *
  * @author arman
  */
-
-@Path("Grafos")
-public class Servicio_Grafo {
-    
-    private static List<Grafo> Grafolist = GrafoDAO.getProductos();
+@Path("Crear")
+public class Servicio_Crear_Grafo {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getProductos(){
-        return Response.ok(Grafolist).build();
-    }
+    public Response create(){
+        Crear_grafo.crear();
+        return Response.ok("Grafo creado").build();
+    
 }
+}
+    
+
