@@ -15,7 +15,10 @@ public class Grafo {
     Grafo next;
         
                    
-    
+    public Grafo(){
+        
+        
+    }
    
     public Grafo(int id_grafo){
         
@@ -61,8 +64,30 @@ public class Grafo {
     public void setNext(Grafo next) {
         this.next = next;
     }
-    
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Grafo other = (Grafo) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
+    
   
     
 

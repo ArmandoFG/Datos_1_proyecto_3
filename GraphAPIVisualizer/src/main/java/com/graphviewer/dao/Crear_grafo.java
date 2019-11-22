@@ -17,11 +17,13 @@ public class Crear_grafo {
     
     
     
-    public static void crear()
+    public static List<Grafo> getProductos()
     {
+        List<Grafo> lista = new ArrayList();
+        Grafo grafo1 = new Grafo(500);
         
-        
-        
-        
-}
+        lista.add(grafo1);
+
+        return lista;
+    }
 }
