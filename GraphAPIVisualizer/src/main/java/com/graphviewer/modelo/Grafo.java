@@ -10,17 +10,19 @@ import java.util.List;
  */
 public class Grafo {
     int id;   
-    public static List<Nodo> nodos;
-    public static List<Aristas> aristas;
+    public List<Nodo> nodos;
+    public List<Aristas> aristas;
     Grafo next;
         
                    
     
    
-    public Grafo(int id_grafo/*, NodoDAO Nodo*/){
+    public Grafo(int id_grafo){
         
         this.id = id_grafo;
         this.next = null;
+        this.nodos = null;
+        this.aristas = null;
     }
     
     public int getId() {
@@ -35,15 +37,15 @@ public class Grafo {
         return nodos.get(index);
     }
 
-    public static List<Aristas> getAristas() {
+    public List<Aristas> getAristas() {
         return aristas;
     }
 
-    public static void setAristas(List<Aristas> aristas) {
-        Grafo.aristas = aristas;
+    public void setAristas(List<Aristas> aristas) {
+        this.aristas = aristas;
     }
     
-    public static List getNodos() {
+    public List getNodos() {
         return nodos;
     }
 
