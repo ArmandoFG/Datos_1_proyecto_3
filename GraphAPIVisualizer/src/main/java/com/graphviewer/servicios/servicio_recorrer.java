@@ -6,6 +6,7 @@
 package com.graphviewer.servicios;
 
 import com.graphviewer.dao.Recorrer_Grafos;
+import com.graphviewer.modelo.Grafo;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -19,7 +20,7 @@ import javax.ws.rs.core.Response;
  */
 @Path("recorrer")
 public class servicio_recorrer {
-    private static List<Integer> List = Recorrer_Grafos.Recorrer();
+    private static List<Grafo> List = Recorrer_Grafos.Recorrer();
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response recorrer() {

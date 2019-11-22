@@ -15,18 +15,13 @@ import java.util.List;
  */
 public class Crear_grafo {
     
-    static int contador;
-    static List<Grafo> Grafos_list;
-    static String nombre;
+    
     
     public static void crear()
     {
         
-        List<Grafo> Grafos_list = new ArrayList();
-        nombre = "grafo" + Integer.toString(contador);
-        Grafo nombre = new Grafo(contador);
-        Grafos_list.add(nombre);
-        contador++;
+        
+        
         
 }
 }

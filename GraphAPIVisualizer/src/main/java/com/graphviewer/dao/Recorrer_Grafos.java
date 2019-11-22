@@ -5,8 +5,8 @@
  */
 package com.graphviewer.dao;
 
-import static com.graphviewer.dao.Crear_grafo.Grafos_list;
 import com.graphviewer.modelo.Grafo;
+import static com.graphviewer.servicios.Servicio_Crear_Grafo.Grafos_list;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,17 +18,12 @@ public class Recorrer_Grafos {
     
     static List<Integer> id;
     
-    public static void recorrer(){
-        //id = new ArrayList();
-        for (Grafo grafos :Grafos_list){
-            id.add(grafos.getId());
-        }
-    }
-    public static List<Integer>  Recorrer(){
-       List<Integer> id = new ArrayList(); 
-       recorrer();
-       id.add(111);
-       return id; 
+    
+    
+    public static List<Grafo>  Recorrer(){
+        
+       
+       return Grafos_list; 
     }
     
     
