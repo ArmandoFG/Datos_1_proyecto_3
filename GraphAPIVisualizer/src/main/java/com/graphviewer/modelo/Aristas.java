@@ -5,49 +5,59 @@
  */
 package com.graphviewer.modelo;
 
+import java.util.logging.Logger;
+
 /**
  *
  * @author Harold
  */
 public class Aristas {
-    public Nodo Start;
-    public Nodo End;
-    public int Peso;
-    public int Id;
+    public int start;
+    public int end;
+    public int peso;
+    public int id;
     
-    public Aristas(int peso, int id){
-    this.Start = null;
-    this.End = null;
-    this.Peso = peso;
-    this.Id = id;
+    public Aristas(){
+    
+    }
+    
+    public Aristas( int id){
+        this.start = 0;
+        this.end = 0;
+        this.peso = peso;
+        this.id = id;
     }
 
-    public Nodo getStart() {
-        return Start;
+    public int getStart() {
+        return start;
     }
 
-    public void setStart(Nodo Start) {
-        this.Start = Start;
+    public void setStart(int Start) {
+        this.start = Start;
     }
 
-    public Nodo getEnd() {
-        return End;
+    public int getEnd() {
+        return end;
     }
 
-    public void setEnd(Nodo End) {
-        this.End = End;
+    public void setEnd(int End) {
+        this.end = End;
     }
 
     public int getPeso() {
-        return Peso;
+        return peso;
     }
 
     public void setPeso(int Peso) {
-        this.Peso = Peso;
+        this.peso = Peso;
     }
 
     public int getId() {
-        return Id;
+        return id;
+    }
+
+    public void setId(int Id) {
+        this.id = Id;
     }
     
     

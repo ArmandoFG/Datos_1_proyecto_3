@@ -1,6 +1,7 @@
 package com.graphviewer.modelo;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,8 +25,8 @@ public class Grafo {
         
         this.id = id_grafo;
         this.next = null;
-        this.nodos = null;
-        this.aristas = null;
+        this.nodos = new ArrayList();
+        this.aristas = new ArrayList();
     }
     
     public int getId() {
@@ -42,6 +43,9 @@ public class Grafo {
 
     public List<Aristas> getAristas() {
         return aristas;
+    }
+    public Aristas getArista(int index) {
+        return aristas.get(index);
     }
 
     public void setAristas(List<Aristas> aristas) {
@@ -64,7 +68,7 @@ public class Grafo {
     public void setNext(Grafo next) {
         this.next = next;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;

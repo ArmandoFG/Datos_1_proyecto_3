@@ -17,11 +17,11 @@ public class NodoDAO {
     public static List<Nodo> getProductos()
     {
         List<Nodo> lista = new ArrayList();
-        Nodo nodo1 = new Nodo(88323787,001);
-        Nodo nodo2 = new Nodo(63139863,203);
-        Nodo nodo3 = new Nodo(63632009,404);
-        Nodo nodo4 = new Nodo(87145393,800);
-        Nodo nodo5 = new Nodo(40001155,200);
+        Nodo nodo1 = new Nodo(001);
+        Nodo nodo2 = new Nodo(203);
+        Nodo nodo3 = new Nodo(404);
+        Nodo nodo4 = new Nodo(800);
+        Nodo nodo5 = new Nodo(200);
         
         lista.add(nodo1);
         lista.add(nodo2);
