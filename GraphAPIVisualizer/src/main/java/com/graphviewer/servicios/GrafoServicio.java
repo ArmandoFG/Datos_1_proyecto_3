@@ -243,9 +243,9 @@ public class GrafoServicio {
     }
     
     @DELETE 
-    @Path("/{id}/nodes/{id2}") 
+    @Path("/{id}/nodes") 
     @Produces(MediaType.APPLICATION_JSON) 
-    public Response eliminarNodos(@PathParam("id") int id, @PathParam("id2") int id2, Object entity) { 
+    public Response eliminarNodos(@PathParam("id") int id, Object entity) { 
         Grafo grafo = new Grafo(id); 
         if (GrafoList.contains(grafo)){ 
             GrafoList.get(id-1).getNodos().clear();    
@@ -269,12 +269,12 @@ public class GrafoServicio {
     } 
     
     @DELETE 
-    @Path("/{id}/edges/{id2}") 
+    @Path("/{id}/edges") 
     @Produces(MediaType.APPLICATION_JSON) 
-    public Response eliminarAristas(@PathParam("id") int id, @PathParam("id2") int id2, Object entity) { 
+    public Response eliminarAristas(@PathParam("id") int id, Object entity) { 
         Grafo grafo = new Grafo(id); 
         if (GrafoList.contains(grafo)){ 
-            GrafoList.get(id-1).getNodos().clear();    
+            GrafoList.get(id-1).getAristas().clear();    
              
             return Response.ok().build(); 
         } 
@@ -287,11 +287,11 @@ public class GrafoServicio {
     public Response eliminarArista(@PathParam("id") int id, @PathParam("id2") int id2, Object entity) { 
         Grafo grafo = new Grafo(id); 
         if (GrafoList.contains(grafo)){ 
-            GrafoList.get(id-1).getNodos().remove(id2);    
+            GrafoList.get(id-1).getAristas().remove(id2);    
              
             return Response.ok().build(); 
         } 
         return Response.status(Response.Status.NOT_FOUND).build(); 
-    } 
+    }
     
 }
