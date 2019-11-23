@@ -139,6 +139,32 @@ public class GrafoServicio {
         return Response.status(Response.Status.NOT_FOUND).build();
     }
     
+    @DELETE
+    @Path("/{id}/nodes/{id2}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response eliminarNodos(@PathParam("id") int id, @PathParam("id2") int id2, Object entity) {
+        Grafo grafo = new Grafo(id);
+        if (GrafoList.contains(grafo)){
+            GrafoList.get(id-1).getNodos().clear();   
+            
+            return Response.ok().build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
+    
+    @DELETE
+    @Path("/{id}/nodes/{id2}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response eliminarNodo(@PathParam("id") int id, @PathParam("id2") int id2, Object entity) {
+        Grafo grafo = new Grafo(id);
+        if (GrafoList.contains(grafo)){
+            GrafoList.get(id-1).getNodos().remove(id2);   
+            
+            return Response.ok().build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
+    
     @GET
     @Path("/{id}/edges")
     @Produces(MediaType.APPLICATION_JSON)
@@ -173,6 +199,32 @@ public class GrafoServicio {
         }
         return Response.status(Response.Status.NOT_FOUND).build();
        
+    }
+    
+    @DELETE
+    @Path("/{id}/edges/{id2}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response eliminarAristas(@PathParam("id") int id, @PathParam("id2") int id2, Object entity) {
+        Grafo grafo = new Grafo(id);
+        if (GrafoList.contains(grafo)){
+            GrafoList.get(id-1).getNodos().clear();   
+            
+            return Response.ok().build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
+    
+    @DELETE
+    @Path("/{id}/edges/{id2}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response eliminarArista(@PathParam("id") int id, @PathParam("id2") int id2, Object entity) {
+        Grafo grafo = new Grafo(id);
+        if (GrafoList.contains(grafo)){
+            GrafoList.get(id-1).getNodos().remove(id2);   
+            
+            return Response.ok().build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
     
     @PUT
