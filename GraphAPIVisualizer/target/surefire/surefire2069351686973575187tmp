@@ -1,0 +1,8 @@
+#surefire
+#Fri Nov 22 23:51:55 CST 2019
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.0.2\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\pc\\Documents\\Github\\Datos_1_proyecto_3\\GraphAPIVisualizer
+file.encoding=UTF-8
+localRepository=C\:\\Users\\pc\\.m2\\repository
+netbeans.deploy=true
+basedir=C\:\\Users\\pc\\Documents\\Github\\Datos_1_proyecto_3\\GraphAPIVisualizer
