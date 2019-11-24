@@ -20,6 +20,11 @@ public class Grafo {
         
         
     }
+    
+    /**
+     * 
+     * @param id_grafo numero a asignar al grafo creado para su identificación
+     */
    
     public Grafo(int id_grafo){
         
@@ -28,6 +33,8 @@ public class Grafo {
         this.nodos = new ArrayList();
         this.aristas = new ArrayList();
     }
+    
+    //Metodos get y set para las variables que almacena el grafo
     
     public int getId() {
         return id;
