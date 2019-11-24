@@ -9,8 +9,10 @@ package com.graphviewer.servicios;
 import com.graphviewer.modelo.Aristas;
 import com.graphviewer.modelo.Grafo;
 import com.graphviewer.modelo.Nodo;
+import com.graphviewer.modelo.Ruta;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -28,6 +30,13 @@ import javax.ws.rs.core.Response;
  */
 @Path("graphs")
 public class GrafoServicio {
+    static List<Integer> visitado = new ArrayList();
+    static Stack<Integer> pila = new Stack<Integer>();
+    static List<Ruta> MejorRuta = new ArrayList();
+    static String ruta = "";
+    static int peso;
+        
+        
     private static List<Grafo> GrafoList = new ArrayList();/*Crear_grafo.getProductos();*/
     private static int contGrafos = 1; 
     private static int contNodos = 1; 
@@ -285,6 +294,7 @@ public class GrafoServicio {
     @Path("/{id}/edges/{id2}") 
     @Produces(MediaType.APPLICATION_JSON) 
     public Response eliminarArista(@PathParam("id") int id, @PathParam("id2") int id2) { 
+        
         Grafo grafo = new Grafo(id); 
         if (GrafoList.contains(grafo)){ 
             GrafoList.get(id-1).getAristas().remove(id2-1);    
@@ -293,5 +303,85 @@ public class GrafoServicio {
         } 
         return Response.status(Response.Status.NOT_FOUND).build(); 
     }
+    
+    @GET
+    @Path("/{id}/graphs/{id1}/nodes/{id2}")
+    @Produces(MediaType.APPLICATION_JSON) 
+    public Response RutaMasCorta(@PathParam("id") int id, @PathParam("id1") int id1, @PathParam("id2") int id2) { 
+        ruta_primaria(id, id1, id2);    //Llama a la funcion para analizar la mejor ruta
+        int aux = 0;    
+        Ruta auxRuta = null;
+        if (MejorRuta.isEmpty()){
+            return Response.status(Response.Status.NOT_FOUND).build(); 
+        }else{
+        for (Ruta rutas :MejorRuta){
+            if (rutas.getPeso() > aux){
+                aux = rutas.getPeso();
+                auxRuta = rutas;
+            }
+        }
+        
+        }
+        return Response.ok(auxRuta).build();
+    }
+    
+    public void ruta_primaria(int id, int id1, int id2){
+        int pos = GrafoList.indexOf(id);    
+        Grafo grafo = GrafoList.get(pos);   
+                    for(Aristas aris :grafo.getAristas()){
+                        if(aris.getStart() == id1){
+                            if(aris.getEnd() == id2 && !visitado.contains(aris.getId())){
+                                pila.add(aris.getStart());
+                                pila.add(aris.getEnd());
+                                peso = aris.getPeso();
+                                visitado.add(aris.getId());
+                                while(!pila.isEmpty()) ruta+=(pila.pop() + " ");
+                                Ruta rutas = new Ruta(peso, ruta);
+                                MejorRuta.add(rutas);
+                                peso = 0;
+                                pila = null;
+                                break;
+                            }
+                            else{
+                                int aux = aris.getEnd();
+                                ruta(grafo, aux, id2);
+                            }
+                        }
+                    }
+        
+    }
+    
+    public void ruta(Grafo grafo, int id, int id2){
+        for(Aristas arista :grafo.getAristas()){
+            if(arista.getStart() == id){
+                for(Aristas aristaux :grafo.getAristas()){
+                    if(aristaux.getEnd() == id2 && !visitado.contains(aristaux.getId())){
+                                pila.add(aristaux.getStart());
+                                pila.add(aristaux.getEnd());
+                                peso += aristaux.getPeso();
+                                visitado.add(aristaux.getId());
+                                while(!pila.isEmpty()) ruta+=(pila.pop() + " ");
+                                Ruta rutas = new Ruta(peso, ruta);
+                                MejorRuta.add(rutas);
+                                peso = 0;
+                                pila = null;
+                                break;
+                    
+                    }
+                    else{
+                        pila.add(aristaux.getStart());
+                        pila.add(aristaux.getEnd());
+                        peso += aristaux.getPeso();
+                        ruta(grafo, aristaux.getEnd(), id2);
+                        
+                }
+            }}
+        }
+        
+    }
+    
+   
+    
+    
     
 }
