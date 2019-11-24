@@ -8,7 +8,7 @@ package com.graphviewer.servicios;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.ApplicationPath;
 /**
- *
+ * Configuracion del path hacia el API
  * @author Harold
  */
 @ApplicationPath("api")

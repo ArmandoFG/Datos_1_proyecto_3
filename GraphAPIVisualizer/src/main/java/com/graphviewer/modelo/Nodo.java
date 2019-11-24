@@ -5,10 +5,9 @@
  */
 package com.graphviewer.modelo;
 
-import java.util.Vector;
 
 /**
- *
+ * Clase encargada de crear un nodo del grafo
  * @author Harold
  */
 public class Nodo {

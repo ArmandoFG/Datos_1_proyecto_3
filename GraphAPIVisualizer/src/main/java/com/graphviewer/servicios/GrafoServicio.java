@@ -23,7 +23,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- *
+ * Clase encargada de crear los metodos y el path para las solicitudes del servidor 
  * @author Harold
  * @author Armando
  */
@@ -36,34 +36,44 @@ public class GrafoServicio {
     private static int contAristas = 1; 
     
     /**
-     * 
+     * Metodo encargado de obtener la lista de todos los grafos
      * @return retorna la lista de grafos
      */
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)   //Comunicacion mediante JSON
     public Response getGrafos() {
-       return Response.ok(GrafoList).build();
+       try{
+           return Response.ok(GrafoList).build();
+       }catch(Exception e){
+           return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+       }
     }
     
     /**
-     * 
+     * Metodo encargado de crear un nodo
      * @return Retorna el grafo creado
      */
     
     @POST
     @Produces(MediaType.APPLICATION_JSON)  //Comunicacion mediante JSON
     public Response CreateGrafo(){
+        try{
+            Grafo graph = new Grafo(contGrafos);    // Crea un grafo
+            contGrafos++;   //Contador para id de grafos
+            GrafoList.add(graph);   //Agrega el grafo a la lista
         
-        Grafo graph = new Grafo(contGrafos);    // Crea un grafo
-        contGrafos++;   //Contador para id de grafos
-        GrafoList.add(graph);   //Agrega el grafo a la lista
-        
-        return Response.ok(graph.getId()).build();  //Retorna el grafo
+            return Response.ok(graph.getId()).build();  //Retorna el grafo
+        }catch(Exception e){
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
     
     }
     
-    
+    /**
+     * Metodo que elimina todos los grafos
+     * @return retorna el codigo con el resultado de la operacion
+     */
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)   //Comunicacion mediante JSON
     public Response EliminarGrafos() {
@@ -72,13 +82,13 @@ public class GrafoServicio {
     }
     
     /**
-     * 
+     * Metodo que busca un grafo
      * @param id Id del grafo a buscar
      * @return Retorna el grafo buscado
      */
     @GET
     @Path("/{id}")
-        @Produces(MediaType.APPLICATION_JSON)   //Comunicacion mediante JSON
+    @Produces(MediaType.APPLICATION_JSON)   //Comunicacion mediante JSON
     
     public Response BuscarGrafo(@PathParam("id") int id){
         Grafo grafo = new Grafo(id);    //Crea un grafo con la id asignada para saber si existe
@@ -95,9 +105,9 @@ public class GrafoServicio {
     }
     
     /**
-     * 
+     * Metodo que elimina un grafo de la lista
      * @param id Identificacion del grafo a eliminar
-     * @return Retorna solo si hay un fallo durante el proceso
+     * @return Retorna el codigo con el resultado de la operacion
      */
     
     @DELETE
@@ -114,10 +124,10 @@ public class GrafoServicio {
     }
     
     /**
-     * 
+     * Metodo que añade un nodo al grafo indicado
      * @param id    Identificacion del grafo donde se va a agregar el nodo
      * @param entity
-     * @return Retorna el nodo creado o un fallo si se da
+     * @return Retorna el codigo del resultado de la operacion
      */
     
     @POST
@@ -137,12 +147,12 @@ public class GrafoServicio {
                 }
             }
         }
-        return Response.status(Response.Status.NOT_FOUND).build();  //Retorna error
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();  //Retorna error
     
     }
     
     /**
-     * 
+     * Metodo que obtiene la lista de nodos de un grafo indicado 
      * @param id Identificacion del grafo donde se quiere obtener los nodos
      * @return Retorna los nodos
      */
@@ -163,11 +173,11 @@ public class GrafoServicio {
         return Response.status(Response.Status.NOT_FOUND).build();  //Retorna error
     }
     /**
-     * 
+     * Metodo que actualiza el contenido de un nodo
      * @param id
      * @param id2
      * @param entity
-     * @return 
+     * @return Devuelve un codigo con el resultado de la operacion
      */
     @PUT
     @Path("/{id}/nodes/{id2}")
@@ -179,13 +189,13 @@ public class GrafoServicio {
             
             return Response.ok().build();
         }
-        return Response.status(Response.Status.NOT_FOUND).build();
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
     }
     
     /**
-     * 
+     * Metodo que obtiene la lista de aristas de un grafo indicado
      * @param id   Identificacion del grofo que se quiere obtener las aristas
-     * @return Retorna la arista o error si se da
+     * @return Retorna el codigo resultante de la operacion 
      */
     @GET
     @Path("/{id}/edges")
@@ -200,10 +210,10 @@ public class GrafoServicio {
                 }
             }
         }
-        return Response.status(Response.Status.NOT_FOUND).build();  //Retorna error
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();  //Retorna error
     }
     /**
-     * 
+     * Metodo que crea una arista en el grafo indicado
      * @param id    Identificacion del grafo donde se va a crear la arista
      * @param arista
      * @return  Retorna la arista creada
@@ -225,16 +235,16 @@ public class GrafoServicio {
                 }
             }
         }
-        return Response.status(Response.Status.NOT_FOUND).build();  //Retorna error
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();  //Retorna error
        
     }
     
     /**
-     * 
-     * @param id
-     * @param id2
-     * @param obj
-     * @return 
+     * Metodo que actualiza el contenido de una arista 
+     * @param id recibe la id del grafo, esta se obtiene del path
+     * @param id2 recibe la id de la arista a actualizar, se obtiene del path
+     * @param obj recibe una arista con los datos a actualizar
+     * @return Devuelve un codigo dependiendo del resultado de la operacion 
      */
     
     @PUT
@@ -242,17 +252,27 @@ public class GrafoServicio {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateArista(@PathParam("id") int id, @PathParam("id2") int id2, Aristas obj) {
-        Grafo grafo = new Grafo(id);
-        if (GrafoList.contains(grafo)){
-   
-            GrafoList.get(id-1).getArista(id2-1).setStart(obj.start);   
-            GrafoList.get(id-1).getArista(id2-1).setEnd(obj.end);   
-            GrafoList.get(id-1).getArista(id2-1).setPeso(obj.peso);   
-            return Response.ok().build();
-        }
-        return Response.status(Response.Status.NOT_FOUND).build();
+        try{
+            Grafo grafo = new Grafo(id);
+            if (GrafoList.contains(grafo)){
+
+                GrafoList.get(id-1).getArista(id2-1).setStart(obj.start);   
+                GrafoList.get(id-1).getArista(id2-1).setEnd(obj.end);   
+                GrafoList.get(id-1).getArista(id2-1).setPeso(obj.peso);   
+                return Response.ok().build();
+            }return Response.status(Response.Status.NOT_FOUND).build();
+        }catch(Exception e){
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }    
+        
     }
     
+    /**
+     * Metodo que ordena los nodos segun su grado
+     * @param id recibe el id del grafo, se obtiene del path
+     * @param sort recibe un String con la opcion de como desea ordenar los nodos
+     * @return Retorna el grafo creado
+     */
     @GET
     @Path("/{id}/degree")
     @Produces(MediaType.APPLICATION_JSON)
@@ -305,9 +325,9 @@ public class GrafoServicio {
     }
     
     /**
-     * 
+     * Metodo para eliminar todos los nodos de un grafo especifico
      * @param id    Identificacion del grafo de los nodos a borrar
-     * @return  Retorna error si llega a pasar
+     * @return  Retorna el codigo del resultado de la operacion
      */
     
     @DELETE 
@@ -320,14 +340,14 @@ public class GrafoServicio {
              
             return Response.ok().build(); 
         } 
-        return Response.status(Response.Status.NOT_FOUND).build(); //Retorna error
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build(); //Retorna error
     } 
      
     /**
-     * 
+     * Metodo que elimina un nodo de un grafo 
      * @param id    Identificacion del grafo donde se encuentra el nodo a eliminar
      * @param id2   Identificacion del nodo a eliminar
-     * @return  Retorna error
+     * @return  Retorna el codgo con el resultado de la operacion
      */
     @DELETE 
     @Path("/{id}/nodes/{id2}") 
@@ -339,44 +359,52 @@ public class GrafoServicio {
              
             return Response.ok().build(); 
         } 
-        return Response.status(Response.Status.NOT_FOUND).build(); //Retorna error
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build(); //Retorna error
     } 
     
     /**
-     * 
+     * Metodo que elimina todas las aristas de un grafo
      * @param id    Identificacion de la arista a borrar
-     * @return      Retorna error si sucede
+     * @return      Retorna el codigo con el resultado de la operacion
      */
     @DELETE 
     @Path("/{id}/edges") 
     @Produces(MediaType.APPLICATION_JSON) 
     public Response eliminarAristas(@PathParam("id") int id) { 
-        Grafo grafo = new Grafo(id);    //Crea un grafo con la id asignada para saber si existe
-        if (GrafoList.contains(grafo)){     // Examina si el grafo está en la lista
-            GrafoList.get(id-1).getAristas().clear();    //elimina las aristas del grafo
-             
-            return Response.ok().build(); 
-        } 
-        return Response.status(Response.Status.NOT_FOUND).build(); //Retorna error
+        try{
+            Grafo grafo = new Grafo(id);    //Crea un grafo con la id asignada para saber si existe
+            if (GrafoList.contains(grafo)){     // Examina si el grafo está en la lista
+                GrafoList.get(id-1).getAristas().clear();    //elimina las aristas del grafo
+
+                return Response.ok().build(); 
+            } 
+            return Response.status(Response.Status.NOT_FOUND).build(); //Retorna error
+        }catch(Exception e){
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
     } 
     /**
-     * 
+     * Metodo que elimina una arista de un grafo
      * @param id    Identificacion del grafo donde se encuentra las aristas a eliminar
      * @param id2   Identificacion de la arista a eliminar
-     * @return  //Retorna error
+     * @return  Retorna un codigo con el resultado de la operacion
      */
      
     @DELETE 
     @Path("/{id}/edges/{id2}") 
     @Produces(MediaType.APPLICATION_JSON) 
     public Response eliminarArista(@PathParam("id") int id, @PathParam("id2") int id2) { 
-        Grafo grafo = new Grafo(id);    //Crea un grafo con la id asignada para saber si existe
-        if (GrafoList.contains(grafo)){     // Examina si el grafo está en la lista
-            GrafoList.get(id-1).getAristas().remove(id2-1);    //elimina la arista del grafo
-             
-            return Response.ok().build(); 
-        } 
-        return Response.status(Response.Status.NOT_FOUND).build(); //retorna error
+        try{
+            Grafo grafo = new Grafo(id);    //Crea un grafo con la id asignada para saber si existe
+            if (GrafoList.contains(grafo)){     // Examina si el grafo está en la lista
+                GrafoList.get(id-1).getAristas().remove(id2-1);    //elimina la arista del grafo
+
+                return Response.ok().build(); 
+            } 
+            return Response.status(Response.Status.NOT_FOUND).build(); //retorna error
+        }catch(Exception e){
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }    
     }
     
 }

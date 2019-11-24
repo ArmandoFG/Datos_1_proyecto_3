@@ -5,10 +5,9 @@
  */
 package com.graphviewer.modelo;
 
-import java.util.logging.Logger;
 
 /**
- *
+ * Clase encargada de crear las aristas del grafo 
  * @author Harold
  */
 public class Aristas {

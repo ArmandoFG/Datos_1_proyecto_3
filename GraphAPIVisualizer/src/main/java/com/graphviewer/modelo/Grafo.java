@@ -6,8 +6,8 @@ import java.util.List;
 
 
 /**
- *
- * @author arman
+ * Clase encargada de crear los grafos 
+ * @author Armando
  */
 public class Grafo {
     int id;   
@@ -22,7 +22,7 @@ public class Grafo {
     }
     
     /**
-     * 
+     * Contructor para crear un grafo
      * @param id_grafo numero a asignar al grafo creado para su identificación
      */
    
